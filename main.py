@@ -1,10 +1,12 @@
 from flask import Flask, Response
 import cv2, datetime, random, json, asyncio, threading, websockets
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 def generate_frames():
-    cap = cv2.VideoCapture("droneView.mp4")  # or your video source
+    cap = cv2.VideoCapture(0)  # or your video source
     while True:
         ret, frame = cap.read()
         if not ret:
